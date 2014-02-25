@@ -10,58 +10,81 @@
 */
 
 
-add_action('admin_bar_menu', 'customize_admin_bar', 11 );
-function customize_admin_bar( $wp_admin_bar ) {
+add_action( 'plugins_loaded', array( 'HWDSB_Adminbar', 'init' ) );
 
-/*
-Removing the "W" menu
-*/
-$wp_admin_bar->remove_menu( 'wp-logo' );
+/**
+ * HWDSB Adminbar mods.
+ */
+class HWDSB_Adminbar {
+	/**
+	 * Static initializer.
+	 */
+	public static function init() {
+		return new self;
+	}
 
-/*
-Create a "Home" menu
-First, just create the parent menu item
-*/
+	/**
+	 * Constructor.
+	 */
+	public function __construct() {
+		add_action( 'admin_bar_menu', array( $this, 'add_custom_parent_menu' ), 11 );
+	}
 
-$wp_admin_bar->add_menu( array(
-'id' => 'commonlinks',
-'parent' => '0', //puts it on the left-hand side
-'title' => 'Home',
-'href' => ('http://commons.hwdsb.on.ca/')
-) );
+	/**
+	 * Adds custom "Home" menu to WP Adminbar.
+	 *
+	 * Also removes the "WP logo" menu.
+	 */
+	public function add_custom_parent_menu( $wp_admin_bar ) {
 
-/*
-Then add links to it
-This link goes to the support page,
-so only show it to users who are logged in
-*/
-if ( current_user_can( 'read' ) )
-$wp_admin_bar->add_menu( array(
-'id' => 'support',
-'parent' => 'commonlinks',
-'title' => 'Support',
-'href' => ('http://support.commons.hwdsb.on.ca/')
-) );
+		/**
+		 * Removing the "W" menu
+		 */
+		$wp_admin_bar->remove_menu( 'wp-logo' );
 
-/*
-This one goes to the Blog Request Form
-*/
-if ( current_user_can( 'read' ) )
-$wp_admin_bar->add_menu( array(
-'id' => 'blogrequest',
-'parent' => 'commonlinks',
-'title' => 'Blog Request Form',
-'href' => ('http://support.commons.hwdsb.on.ca/blog-request-form/' )
-) );
+		/**
+		 * Create a "Home" menu.
+		 *
+		 * First, just create the parent menu item.
+		 */
+		$wp_admin_bar->add_menu( array(
+			'id' => 'commonlinks',
+			'parent' => '0', //puts it on the left-hand side
+			'title' => 'Home',
+			'href' => ('http://commons.hwdsb.on.ca/')
+		) );
 
-/*
-This one goes to the Developers Blog
-*/
-if ( current_user_can( 'read' ) )
-$wp_admin_bar->add_menu( array(
-'id' => 'developments',
-'parent' => 'commonlinks',
-'title' => 'Developments',
-'href' => ('http://dev.commons.hwdsb.on.ca/' )
-) );
+		/**
+		 * Add submenu items to "Home" menu.
+		 */
+		// Only show the following for logged-in users
+		if ( current_user_can( 'read' ) ) {
+			// Support link
+			$wp_admin_bar->add_menu( array(
+				'id' => 'support',
+				'parent' => 'commonlinks',
+				'title' => 'Support',
+				'href' => ('http://support.commons.hwdsb.on.ca/')
+			) );
+
+			// Blog request form
+			$wp_admin_bar->add_menu( array(
+				'id' => 'blogrequest',
+				'parent' => 'commonlinks',
+				'title' => 'Blog Request Form',
+				'href' => ('http://support.commons.hwdsb.on.ca/blog-request-form/' )
+			) );
+
+			// Developers blog
+			$wp_admin_bar->add_menu( array(
+				'id' => 'developments',
+				'parent' => 'commonlinks',
+				'title' => 'Developments',
+				'href' => ('http://dev.commons.hwdsb.on.ca/' )
+			) );
+
+		}
+
+	}
+
 }
