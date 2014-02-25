@@ -9,15 +9,15 @@
 * License:
 */
 
- 
+
 add_action('admin_bar_menu', 'customize_admin_bar', 11 );
 function customize_admin_bar( $wp_admin_bar ) {
- 
+
 /*
 Removing the "W" menu
 */
 $wp_admin_bar->remove_menu( 'wp-logo' );
- 
+
 /*
 Create a "Home" menu
 First, just create the parent menu item
@@ -42,7 +42,7 @@ $wp_admin_bar->add_menu( array(
 'title' => 'Support',
 'href' => ('http://support.commons.hwdsb.on.ca/')
 ) );
- 
+
 /*
 This one goes to the Blog Request Form
 */
