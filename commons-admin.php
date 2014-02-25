@@ -23,7 +23,6 @@ Create a "Home" menu
 First, just create the parent menu item
 */
 
-if ( current_user_can( 'read' ) )
 $wp_admin_bar->add_menu( array(
 'id' => 'commonlinks',
 'parent' => '0', //puts it on the left-hand side
