@@ -27,9 +27,28 @@ class HWDSB_Adminbar {
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_action( 'admin_bar_menu', array( $this, 'add_custom_parent_menu' ), 11 );
-		add_action( 'admin_bar_menu', array( $this, 'add_random_site' ),        5 );
-		add_action( 'wp_head',        array( $this, 'add_random_site_css' ),    999 );
+		add_filter( 'allowed_redirect_hosts', array( $this, 'whitelist_subdomains' ),   10, 2 );
+		add_action( 'admin_bar_menu',         array( $this, 'add_custom_parent_menu' ), 11 );
+		add_action( 'admin_bar_menu',         array( $this, 'add_random_site' ),        5 );
+		add_action( 'wp_head',                array( $this, 'add_random_site_css' ),    999 );
+	}
+
+	/**
+	 * Whitelists HWDSB subdomains so users are able to be redirected to them.
+	 *
+	 * By default, only the root domain is whitelisted to be redirected.  However,
+	 * we want subdomains from HWDSB to be recognized and redirected as well.
+	 *
+	 * @param array $retval By default, only the root domain is whitelisted
+	 * @param string $subdomain The subdomain being tested for redirection.
+	 * @return array
+	 */
+	public function whitelist_subdomains( $retval, $subdomain ) {
+		if ( strpos( $host, 'hwdsb.on.ca' ) === true ) {
+			$retval[] = $subdomain;
+		}
+
+		return $retval;
 	}
 
 	/**
