@@ -44,7 +44,7 @@ class HWDSB_Adminbar {
 	 * @return array
 	 */
 	public function whitelist_subdomains( $retval, $subdomain ) {
-		if ( strpos( $host, 'hwdsb.on.ca' ) === true ) {
+		if ( strpos( $subdomain, 'hwdsb.on.ca' ) !== false ) {
 			$retval[] = $subdomain;
 		}
 
