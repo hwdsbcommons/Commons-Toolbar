@@ -3,9 +3,9 @@
 * Plugin Name: Commons Admin Bar
 * Plugin URI: http://commons.hwdsb.on.ca
 * Description: A customized version of the WP Admin bar
-* Author: mrjarbenne
+* Author: r-a-y
 * Version: 1.0
-* Author URI: https://mrjarbenne.ca
+* Author URI: https://commons.hwdsb.on.ca
 * License:
 */
 
