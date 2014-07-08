@@ -106,7 +106,6 @@ class HWDSB_Adminbar {
 				'href' => ('http://dev.commons.hwdsb.on.ca/' )
 			) );
 
-<<<<<<< HEAD
 			// Tags blog
 			$wp_admin_bar->add_menu( array(
 				'id' => 'tags',
@@ -114,8 +113,7 @@ class HWDSB_Adminbar {
 				'title' => 'Trending',
 				'href' => ('http://tags.commons.hwdsb.on.ca/' )
 			) );
-=======
->>>>>>> FETCH_HEAD
+
 		}
 
 	}
