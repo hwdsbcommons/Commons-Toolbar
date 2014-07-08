@@ -172,12 +172,18 @@ class HWDSB_Adminbar {
 			    width: 8px;
 			}
 
+			#wpadminbar #wp-admin-bar-commonlinks > .ab-item:before {
+			    content: "\f319";
+			}
+
 			@media screen and ( max-width: 782px ) {
-				#wpadminbar #wp-admin-bar-random-site a.ab-item {
+				#wpadminbar #wp-admin-bar-random-site a.ab-item,
+				#wpadminbar #wp-admin-bar-commonlinks a.ab-item {
 					text-overflow: clip;
 				}
 
-				#wpadminbar #wp-admin-bar-random-site > .ab-item {
+				#wpadminbar #wp-admin-bar-random-site > .ab-item,
+				#wpadminbar #wp-admin-bar-commonlinks > .ab-item {
 					text-indent: 100%;
 					white-space: nowrap;
 					overflow: hidden;
@@ -187,7 +193,8 @@ class HWDSB_Adminbar {
 					position: relative;
 				}
 
-				#wpadminbar #wp-admin-bar-random-site > .ab-item:before {
+				#wpadminbar #wp-admin-bar-random-site > .ab-item:before,
+				#wpadminbar #wp-admin-bar-commonlinks > .ab-item:before {
 					display: block;
 					text-indent: 0;
 					font: normal 32px/1 'dashicons';
@@ -199,7 +206,8 @@ class HWDSB_Adminbar {
 					-moz-osx-font-smoothing: grayscale;
 				}
 
-				#wpadminbar li#wp-admin-bar-random-site {
+				#wpadminbar li#wp-admin-bar-random-site,
+				#wpadminbar li#wp-admin-bar-commonlinks {
 					display: block;
 				}
 			}
